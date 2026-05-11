@@ -48,6 +48,12 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(PORT, () => {
-  console.log(`🚀 VillageAPI running at http://localhost:${PORT}`)
-})
+// For local dev
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 VillageAPI running at http://localhost:${PORT}`)
+  })
+}
+
+// For Vercel serverless
+module.exports = app
