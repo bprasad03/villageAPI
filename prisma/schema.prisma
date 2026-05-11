@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model State {
+  id        Int        @id @default(autoincrement())
+  code      String     @unique
+  name      String     @unique
+  districts District[]
+  createdAt DateTime   @default(now())
+}
+
+model District {
+  id           Int           @id @default(autoincrement())
+  code         String
+  name         String
+  stateId      Int
+  state        State         @relation(fields: [stateId], references: [id])
+  subDistricts SubDistrict[]
+  createdAt    DateTime      @default(now())
+
+  @@unique([code, stateId])
+}
+
+model SubDistrict {
+  id         Int       @id @default(autoincrement())
+  code       String
+  name       String
+  districtId Int
+  district   District  @relation(fields: [districtId], references: [id])
+  villages   Village[]
+  createdAt  DateTime  @default(now())
+
+  @@unique([code, districtId])
+}
+
+model Village {
+  id            Int         @id @default(autoincrement())
+  code          String
+  name          String
+  subDistrictId Int
+  subDistrict   SubDistrict @relation(fields: [subDistrictId], references: [id])
+  createdAt     DateTime    @default(now())
+
+  @@index([name])
+  @@unique([code, subDistrictId])
+}
+
+model User {
+  id           Int          @id @default(autoincrement())
+  email        String       @unique
+  businessName String
+  password     String
+  status       String       @default("PENDING")
+  plan         String       @default("FREE")
+  apiKeys      ApiKey[]
+  logs         RequestLog[]
+  createdAt    DateTime     @default(now())
+}
+
+model ApiKey {
+  id           Int          @id @default(autoincrement())
+  name         String
+  key          String       @unique
+  secret       String
+  userId       Int
+  user         User         @relation(fields: [userId], references: [id])
+  isActive     Boolean      @default(true)
+  dailyLimit   Int          @default(5000)
+  requestCount Int          @default(0)
+  lastUsed     DateTime?
+  logs         RequestLog[]
+  createdAt    DateTime     @default(now())
+}
+
+model RequestLog {
+  id        Int      @id @default(autoincrement())
+  apiKeyId  Int
+  apiKey    ApiKey   @relation(fields: [apiKeyId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  endpoint  String
+  method    String
+  statusCode Int
+  createdAt DateTime @default(now())
+}

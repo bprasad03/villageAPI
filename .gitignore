@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Environment variables (never upload secrets!)
+.env
+.env.local
+
+# Build outputs
+dist/
+frontend/dist/
+
+# Dataset (too large to upload)
+dataset/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Prisma
+prisma/migrations/
+
+# Vercel
+.vercel
