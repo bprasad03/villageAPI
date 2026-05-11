@@ -30,3 +30,12 @@
     "nodemon": "^3.1.14"
   }
 }
+
+{
+  "name": "villageapi",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node api/server.js",
+    "build": "cd frontend && npm install && npm run build"
+  }
+}
