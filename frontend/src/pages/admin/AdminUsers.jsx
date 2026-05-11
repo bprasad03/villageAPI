@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const ADMIN_KEY = 'admin123'
-const API = 'http://localhost:3000/v1'
+const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || 'admin123'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/v1'
 
 const statusColors = {
   PENDING:   'bg-amber-100 text-amber-700',

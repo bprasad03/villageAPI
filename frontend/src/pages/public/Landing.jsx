@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 
-const API = 'http://localhost:3000/v1'
-const DEMO_KEY = 'ak_273361acbaa620ee54a9d9fa13d94a45'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/v1'
+const API_KEY = import.meta.env.VITE_API_KEY || ''
 
 function toTitleCase(str) {
   return str.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())
@@ -122,7 +122,7 @@ function LiveDemo() {
       try {
         const res = await axios.get(`${API}/autocomplete`, {
           params: { q: val },
-          headers: { 'x-api-key': DEMO_KEY }
+          headers: { 'x-api-key': API_KEY }
         })
         setResults(res.data.data || [])
       } catch { setResults([]) }

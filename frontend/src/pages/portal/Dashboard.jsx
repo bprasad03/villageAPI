@@ -7,7 +7,7 @@ import {
 } from 'recharts'
 import useAuthStore from '../../store/authStore'
 
-const API = 'http://localhost:3000/v1'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/v1'
 
 const planLimits = {
   FREE: 5000, PREMIUM: 50000, PRO: 300000, UNLIMITED: 1000000

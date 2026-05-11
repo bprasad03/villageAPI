@@ -5,7 +5,7 @@ import {
   Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend
 } from 'recharts'
 
-const ADMIN_KEY = 'admin123'
+const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || 'admin123'
 
 function StatCard({ icon, label, value, sub, color }) {
   return (
@@ -27,7 +27,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/v1/admin/users', {
+    axios.get(`${API}/admin/users`, {
       headers: { 'x-admin-key': ADMIN_KEY }
     })
     .then(res => setUsers(res.data.data || []))
