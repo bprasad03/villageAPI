@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const API     = import.meta.env.VITE_API_URL || 'http://localhost:3000/v1'
-const API_KEY = import.meta.env.VITE_API_KEY || ''
+const API_KEY = import.meta.env.VITE_API_KEY || 'demo_key_123'
 
 function toTitleCase(str) {
   return str.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())

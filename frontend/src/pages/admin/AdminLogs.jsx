@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || 'admin123'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/v1'
 
 export default function AdminLogs() {
   const [logs, setLogs]     = useState([])

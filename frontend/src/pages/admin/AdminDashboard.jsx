@@ -5,7 +5,7 @@ import {
   Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend
 } from 'recharts'
 
-const ADMIN_KEY = import.meta.env.VITE_ADMIN_KEY || 'admin123'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/v1'
 
 function StatCard({ icon, label, value, sub, color }) {
   return (
@@ -28,7 +28,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     axios.get(`${API}/admin/users`, {
-      headers: { 'x-admin-key': ADMIN_KEY }
+      headers: { 'x-admin-key': import.meta.env.VITE_ADMIN_KEY }
     })
     .then(res => setUsers(res.data.data || []))
     .finally(() => setLoading(false))
@@ -87,10 +87,10 @@ export default function AdminDashboard() {
               </p>
             </div>
           </div>
-          <a>
+          <a
             href="/admin/users"
             className="bg-amber-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-amber-700 transition-colors"
-          
+          >
             Review now →
           </a>
         </div>

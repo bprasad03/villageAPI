@@ -70,16 +70,12 @@ export default function Login() {
           </blockquote>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">
-              R
-            </div>
-            <div>
-              <p className="text-white font-medium text-sm">Rahul Sharma</p>
-              <p className="text-gray-400 text-xs">CTO, LogisticsFirst India</p>
+              🌎
             </div>
           </div>
         </div>
 
-        <p className="text-gray-500 text-sm">© 2024 VillageAPI</p>
+        <p className="text-gray-500 text-sm">© 2026 VillageAPI</p>
       </div>
 
       {/* Right panel */}

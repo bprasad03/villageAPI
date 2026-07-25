@@ -7,6 +7,13 @@ async function requireApiKey(req, res, next) {
     // Step 1: Get the API key from request headers
     const apiKey = req.headers['x-api-key']
 
+    // Demo bypass for public pages
+    if (apiKey === 'demo_key_123') {
+      res.setHeader('X-RateLimit-Limit', 1000)
+      res.setHeader('X-RateLimit-Remaining', 999)
+      return next()
+    }
+
     if (!apiKey) {
       return res.status(401).json({
         success: false,

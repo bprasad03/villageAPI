@@ -120,7 +120,7 @@ export default function Register() {
         </div>
 
         <p className="text-gray-500 text-sm">
-          © 2024 VillageAPI · Trusted by businesses across India
+          © 2026 VillageAPI · Trusted by businesses across India
         </p>
       </div>
 
